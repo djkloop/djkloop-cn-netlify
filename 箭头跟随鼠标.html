@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script src="/dist/utils/util.js"></script>
+  <script src="/dist/arrow.js"></script>
+  <script src="dist/app.js"></script>
+  <script>
+    canvas = document.querySelector('#canvas');
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = 400;
+    let H = canvas.height = 300;
+
+    const arrow = new Arrow({
+      x: W/2,
+      y: H/2,
+      w: 90,
+      h: 30
+    }).render(ctx);
+
+    let mouse = C.getOffset(canvas);
+    let speed = 3;
+
+    (function move() {
+      window.requestAnimationFrame(move);
+      
+      let dx = mouse.x - arrow.x;
+      let dy = mouse.y - arrow.y;
+
+      let angle = Math.atan2(dy, dx);
+
+      let vx = speed * Math.cos(angle);
+      let vy = speed * Math.sin(angle);
+
+      arrow.x += vx;
+      arrow.y += vy;
+      arrow.rotation = angle;
+
+      ctx.clearRect(0, 0, W, H);
+      arrow.render(ctx);
+
+    })()
+  </script>
+</body>
+</html>

@@ -25,5 +25,14 @@ var C = {
     },
     toAng: function (rad) {
         return rad * 180 / Math.PI;
+    },
+    rp: function (arr, int) {
+        var max = Math.max.apply(Math, arr);
+        var min = Math.min.apply(Math, arr);
+        var num = Math.random() * (max - min) + min;
+        return int ? Math.round(num) : num;
+    },
+    createColor: function () {
+        return "rgb(" + C.rp([55, 255], true) + ", " + C.rp([55, 255], true) + ", " + C.rp([55, 255], true) + ")";
     }
 };

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script src="./dist/utils/util.js"></script>
+  <script src="./dist/ball.js"></script>
+  <script>
+    const canvas = document.querySelector('#canvas');
+    const ctx = canvas.getContext('2d');
+
+    let W = canvas.width = 800;
+    let H = canvas.height = 500;
+    
+    let balls = [];
+
+    for (let index = 0; index < 10; index++) {
+      balls.push(new Ball({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 20 + 30,
+        vx: (Math.random() - 0.5) * 3,
+        vy: (Math.random() - 0.5) * 3,
+        id: `ball: ${index}`,
+        fillStyle: `rgb(${55 + ~~(Math.random() * 200)}, ${55 + ~~(Math.random() * 200)}, ${55 + ~~(Math.random() * 200)})`
+      }))
+    }
+
+    function ballMove(ball, index) {
+       ball.x += ball.vx;
+       ball.y += ball.vy;
+
+      if(ball.x - ball.r >= W || ball.x + ball.r <= 0 || ball.y - ball.r >= H || ball.y + ball.r <= 0) {
+        balls.splice(index, 1)
+
+        if(balls.length) {
+          console.log(`${ball.id}被删除了`)
+        } else {
+          console.log('没有小球了...')
+        }
+      }     
+      
+      ball.render(ctx);
+    }
+
+    
+
+    (function move() {
+      window.requestAnimationFrame(move);
+
+      ctx.clearRect(0, 0, W, H);
+      let i = balls.length;
+
+      while (i--) {
+        ballMove(balls[i], i)
+      }
+
+    })()
+
+  </script>
+</body>
+</html>

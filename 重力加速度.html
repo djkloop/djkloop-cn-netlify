@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script src="./dist/utils/util.js"></script>
+  <script src="./dist/ball.js"></script>
+  <script>
+    const canvas = document.querySelector('#canvas');
+    const ctx = canvas.getContext('2d');
+
+    let W = canvas.width = 400;
+    let H = canvas.height = 300;
+
+    const ball = new Ball({
+      x: W / 2,
+      y: H / 2,
+      r: 15
+    }).render(ctx);
+    
+    let g = 0.2, vy = 0;
+
+    (function move() {
+      window.requestAnimationFrame(move);
+
+      ctx.clearRect(0, 0, W, H);
+
+      ball.y += vy;
+      vy += g;
+
+      if(ball.y + ball.r >= H) {
+        ball.y = H - ball.r;
+        vy *= -0.8;
+      }
+
+      ball.render(ctx);
+    })()
+  </script>
+</body>
+</html>
