@@ -6,9 +6,19 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+  #lv-container {
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  </style>
 </head>
 <body>
-  <canvas id="canvas"></canvas>
+  <!-- <canvas id="canvas"></canvas>
   <script src="./dist/utils/util.js"></script>
   <script src="./dist/ball.js"></script>
   <script>
@@ -61,6 +71,24 @@
       balls.forEach(drawBall)
     })()
 
+
+
+  </script> -->
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTI5Mi8xNTgxOQ==">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+
+         if (typeof LivereTower === 'function') { return; }
+
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
   </script>
+</div>
 </body>
 </html>
