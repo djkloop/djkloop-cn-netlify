@@ -260,6 +260,7 @@ window.onload = () => {
     let danmu_video_box : HTMLElement = document.querySelector('.danmu-container-body')as HTMLElement;
     let danmu_client = danmu_video_box.getBoundingClientRect();
     let danmu_client_height = danmu_client.height;
+    let danmu_list_height = document.querySelector('.danmu-container-lists').getBoundingClientRect().height;
     danmu_video.style.height = danmu_client_height - 1 + 'px';
   }
   console.log(`弹幕测试demo启动...`);
@@ -267,11 +268,12 @@ window.onload = () => {
   let danmu_video = danmu_video_box.querySelector('video')as HTMLElement;
   let danmu_client = danmu_video_box.getBoundingClientRect();
   let danmu_client_height = danmu_client.height;
+  let danmu_list_height = document.querySelector('.danmu-container-lists').getBoundingClientRect().height;
   danmu_video.style.height = danmu_client_height - 1 + 'px';
   //
   let STEP = 55;
   // 跑道个数
-  let all_row_length = (danmu_client_height / STEP) >> 0;
+  let all_row_length = (danmu_list_height / STEP) >> 0;
   // 每行存在的弹幕条数
   let per_row_number = 20;
   let g_row_length = all_row_length * per_row_number;

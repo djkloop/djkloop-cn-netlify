@@ -230,6 +230,7 @@ window.onload = function () {
         var danmu_video_box = document.querySelector('.danmu-container-body');
         var danmu_client = danmu_video_box.getBoundingClientRect();
         var danmu_client_height = danmu_client.height;
+        var danmu_list_height = document.querySelector('.danmu-container-lists').getBoundingClientRect().height;
         danmu_video.style.height = danmu_client_height - 1 + 'px';
     }
     console.log("\u5F39\u5E55\u6D4B\u8BD5demo\u542F\u52A8...");
@@ -237,11 +238,12 @@ window.onload = function () {
     var danmu_video = danmu_video_box.querySelector('video');
     var danmu_client = danmu_video_box.getBoundingClientRect();
     var danmu_client_height = danmu_client.height;
+    var danmu_list_height = document.querySelector('.danmu-container-lists').getBoundingClientRect().height;
     danmu_video.style.height = danmu_client_height - 1 + 'px';
     //
     var STEP = 55;
     // 跑道个数
-    var all_row_length = (danmu_client_height / STEP) >> 0;
+    var all_row_length = (danmu_list_height / STEP) >> 0;
     // 每行存在的弹幕条数
     var per_row_number = 20;
     var g_row_length = all_row_length * per_row_number;

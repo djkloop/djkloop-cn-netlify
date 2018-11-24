@@ -55,6 +55,7 @@ ul {
   width: 100%;
   top: 0;
   bottom: 0;
+  max-height: 30%;
 }
 
 .danmu-container-body video {
