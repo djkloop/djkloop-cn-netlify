@@ -1,4 +1,3 @@
-"use strict";
 var Ball = /** @class */ (function () {
     function Ball(props) {
         this.x = 0;

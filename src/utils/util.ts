@@ -3,7 +3,7 @@ interface cInterFace {
 	eventWrapper(ev: any): { x: number, y: number };
 	toRad(ang: number): number;
 	toAng(rad: number): number;
-	rp(arr: Array[number], int: boolean): number;
+	rp(arr: number[], int: number): number;
 	createColor(): string;
 }
 
@@ -42,6 +42,6 @@ const C: cInterFace = {
 		return int ? Math.round(num) : num;
 	},
 	createColor: function() {
-		return `rgb(${C.rp([55, 255], true)}, ${C.rp([55, 255], true)}, ${C.rp([55, 255], true)})`
+		return `rgb(${C.rp([55, 255], 1)}, ${C.rp([55, 255], 1)}, ${C.rp([55, 255], 1)})`
 	}
 };

@@ -6,16 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-  #lv-container {
-    position: absolute;
-    z-index: 999;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
-  </style>
+  <link rel="stylesheet" href="./static/dan-mu.css">
 </head>
 <body>
   <!-- <canvas id="canvas"></canvas>
@@ -74,8 +65,36 @@
 
 
   </script> -->
+  <h1 style="margin:0;padding:0;height:30px;line-height:30px;font-size: 20px;text-align: center;">防碰撞弹幕实现demo</h1>
+  <div id="danmu-1" class="danmu-container">
+    <div class="danmu-menu">
+      <div class="danmu-list-wrapper">
+        <ul>
+          <li>弹幕总条数：<span id="all_runners">0</span></li>
+          <li>当前屏幕占有率：<span id="screen_value">0</span></li>
+          <li>赛跑者个数：<span id="runner_all_number">0</span></li>
+          <li>屏幕上弹幕总数：<span id="screen_runner_all_number">0</span></li>
+          <li>屏幕上峰值：<span id="screen_runner_all_number_max">0</span></li>
+          <li>弹幕连接失败：<spen id="fail_queue">0</spen></li>
+        </ul>
+      </div>
+    </div>
+    <div class="danmu-container-body">
+      <div class="danmu-container-video">
+        <video autoplay id="flutter-video" src="/static/Introducing Flutter.mp4"></video>
+      </div>
+      <div class="danmu-container-lists">
+        <!-- <div class="danmu-list-item" data-finish="" data-index="" data-type="" data-hash="">
+          <div class="danmu_list_item_img"></div>
+          <div class="danmu_list_item_content">弹幕文案</div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <script src="./dist/danmu.js"></script>
 
-<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTI5Mi8xNTgxOQ==">
+
+<!-- <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTI5Mi8xNTgxOQ==">
   <script type="text/javascript">
      (function(d, s) {
          var j, e = d.getElementsByTagName(s)[0];
@@ -89,6 +108,6 @@
          e.parentNode.insertBefore(j, e);
      })(document, 'script');
   </script>
-</div>
+</div> -->
 </body>
 </html>

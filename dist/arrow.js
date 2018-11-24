@@ -1,4 +1,3 @@
-"use strict";
 var Arrow = /** @class */ (function () {
     function Arrow(props) {
         this.x = 0;

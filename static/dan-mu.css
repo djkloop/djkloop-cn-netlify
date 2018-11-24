@@ -1,0 +1,171 @@
+body,
+html {
+  background: #fff;
+}
+
+ul {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+}
+
+.danmu-container {
+  position: relative;
+  top: 2%;
+  bottom: 5%;
+  height: calc(100% - 5% - 5%);
+}
+
+.danmu-menu {
+  width: calc(20% - 2.5%);
+  position: absolute;
+  left: 5%;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .6);
+  color: #fff;
+}
+
+.danmu-list-wrapper {
+  min-height: 100%;
+}
+
+.danmu-container-body {
+  width: calc(80% - 5%);
+  position: absolute;
+  right: 5%;
+  left: calc(5% + 20% - 2.5%);
+  top: 0;
+  bottom: 0;
+  z-index: 9999999;
+  overflow: hidden;
+}
+
+.danmu-container-video {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 9990;
+}
+
+.danmu-container-lists {
+  z-index: 9999;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+}
+
+.danmu-container-body video {
+  border: 1px solid #ccc;
+  width: calc(100% - 2px);
+  display: block;
+  font-size: 0;
+  object-fit: contain;
+  position: relative;
+  z-index: 9999999;
+}
+
+.danmu-container-lists .danmu-list-item {
+  display: block;
+  top: 10px;
+  position: absolute;
+  white-space: pre;
+  left: 200%;
+  display: table;
+  transform: translate(0px, 0px);
+  -webkit-transform: translate(0px, 0px);
+}
+
+.danmu-container-lists .unit>* {
+  display: table-cell;
+  position: relative;
+  vertical-align: middle;
+}
+
+.danmu-list-item .danmu_list_item_img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid black;
+  position: relative;
+  background-size: cover;
+  border-color: rgba(255, 206, 0, 0.96);
+  background-image: url("http://active.qiutianaimeili.com/one_year_head_14.jpg");
+  border-color: rgba(255, 206, 0, 0.96);
+}
+
+.danmu-list-item .danmu_list_item_content {
+  background-color: rgba(255, 206, 0, 0.96);
+  color: black;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 8px 6px;
+  margin-left: 2px;
+  white-space: pre;
+  font-family: 'SimSun';
+}
+
+.danmu_move {
+	animation: move 1s linear 5s;
+	-webkit-animation: move 1s linear 5s;
+}
+
+.danmu_un_move {
+	animation: move_half 1s linear 5s;
+	-webkit-animation: move_half 1s linear 5s;
+}
+
+@keyframes move {
+	0% {
+		left: 100%;
+		transform: translate(0px, 0px);
+		-webkit-transform: translate(0px, 0px);
+	}
+
+	100% {
+		left: 0px;
+		transform: translate(-100%, 0px);
+		-webkit-transform: translate(-100%, 0px);
+	}
+}
+
+@-webkit-keyframes move {
+	0% {
+		left: 100%;
+		transform: translate(0px, 0px);
+		-webkit-transform: translate(0px, 0px);
+	}
+
+	100% {
+		left: 0px;
+		transform: translate(-100%, 0px);
+		-wekbit-transform: translate(-100%, 0px);
+	}
+}
+
+@keyframes move_half {
+  0% {
+    transform: translate(0px, 0px);
+    -webkit-transform: translate(0px, 0px);
+  }
+
+  100% {
+    left: 0px;
+    transform: translate(-100%, 0px);
+    -webkit-transform: translate(-100%, 0px);
+  }
+}
+
+@-webkit-keyframes move_half {
+  0% {
+    transform: translate(0px, 0px);
+    -webkit-transform: translate(0px, 0px);
+  }
+  100% {
+    left: 0px;
+    transform: translate(-100%, 0px);
+    -wekbit-transform: translate(-100%, 0px);
+  }
+}

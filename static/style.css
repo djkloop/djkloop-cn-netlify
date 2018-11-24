@@ -19,15 +19,15 @@
  .title {
    display: inline-block;
  }
- 
+
  p {
    line-height: 2rem;
  }
- 
+
  .sidenav-trigger {
    color: #26a69a;
  }
- 
+
  .parallax-container {
    min-height: 380px;
    line-height: 0;
@@ -37,7 +37,7 @@
    .parallax-container .section {
      width: 100%;
    }
- 
+
  @media only screen and (max-width : 992px) {
    .parallax-container .section {
      position: absolute;
@@ -49,7 +49,7 @@
      top: 10%;
    }
  }
- 
+
  @media only screen and (max-width : 600px) {
    #index-banner .section {
      top: 0;
@@ -64,15 +64,20 @@
       vertical-align: middle;
     }
  }
- 
+
  .icon-block {
    padding: 0 15px;
  }
  .icon-block .material-icons {
    font-size: inherit;
  }
- 
+
  footer.page-footer {
    margin: 0;
  }
- 
+
+
+ html,
+ body {
+   background: #cccccc;
+ }

@@ -1,4 +1,3 @@
-"use strict";
 var C = {
     getOffset: function (ele) {
         var mouse = {
@@ -33,6 +32,6 @@ var C = {
         return int ? Math.round(num) : num;
     },
     createColor: function () {
-        return "rgb(" + C.rp([55, 255], true) + ", " + C.rp([55, 255], true) + ", " + C.rp([55, 255], true) + ")";
+        return "rgb(" + C.rp([55, 255], 1) + ", " + C.rp([55, 255], 1) + ", " + C.rp([55, 255], 1) + ")";
     }
 };
