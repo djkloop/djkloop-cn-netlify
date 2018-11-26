@@ -1,0 +1,125 @@
+:root {
+  --text-color: black;
+  --container-height: 600px;
+  --container-width: 400px;
+  --border-width: 2px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.bullet-container {
+  border: 1px solid var(--text-color);
+  height: var(--container-height);
+  width: calc(var(--container-height) + var(--container-width));
+  position: relative;
+  left: 50%;
+  top: 50%;
+  margin-left: calc(calc(var(--container-height) + var(--container-width)) / -2);
+  margin-top: calc(var(--container-height) / -2);;
+}
+
+.bullet-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.bullet-wrapper .bullet-item {
+  position: absolute;
+  left: 200%;
+  display: table;
+}
+
+.bullet-wrapper .bullet-item.bullet-item_move {
+  top: 15.3253px;
+  animation-delay: 0s;
+  animation-duration: 20s;
+  animation-play-state: running;
+  animation-name: move;
+}
+
+.bullet-wrapper .bullet-item .bullet-avatar,
+.bullet-wrapper .bullet-item .bullet-content
+{
+  display: inline-block;
+}
+
+.bullet-wrapper .bullet-item .bullet-avatar {
+  border: var(--border-width) solid var(--text-color);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: yellowgreen;
+  vertical-align: middle;
+}
+
+.bullet-wrapper .bullet-item .bullet-content {
+  vertical-align: middle;
+  border: var(--border-width) solid var(--text-color);
+  background: var(--text-color);
+  color: aliceblue;
+  border-radius: 8px;
+  height: 33px;
+  line-height: 33px;
+  padding: 2px;
+}
+
+@keyframes move {
+	0% {
+		left: 100%;
+		transform: translate(0px, 0px);
+		-webkit-transform: translate(0px, 0px);
+	}
+
+	100% {
+		left: 0px;
+		transform: translate(-100%, 0px);
+		-webkit-transform: translate(-100%, 0px);
+	}
+}
+
+@-webkit-keyframes move {
+	0% {
+		left: 100%;
+		transform: translate(0px, 0px);
+		-webkit-transform: translate(0px, 0px);
+	}
+
+	100% {
+		left: 0px;
+		transform: translate(-100%, 0px);
+		-wekbit-transform: translate(-100%, 0px);
+	}
+}
+
+@keyframes move_half {
+  0% {
+    transform: translate(0px, 0px);
+    -webkit-transform: translate(0px, 0px);
+  }
+
+  100% {
+    left: 0px;
+    transform: translate(-100%, 0px);
+    -webkit-transform: translate(-100%, 0px);
+  }
+}
+
+@-webkit-keyframes move_half {
+  0% {
+    transform: translate(0px, 0px);
+    -webkit-transform: translate(0px, 0px);
+  }
+  100% {
+    left: 0px;
+    transform: translate(-100%, 0px);
+    -webkit-transform: translate(-100%, 0px);
+  }
+}
