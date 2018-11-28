@@ -4,6 +4,7 @@ interface Window {
 
 interface MainBulletOptions {
   data: any,
+  padding: number,
   dataMap: (arr: any[]) => any,
   el: string
 }
@@ -52,7 +53,7 @@ window.onload = function () {
                 start: item.offset_time * 1,
                 avatarUrl: item.avatarUrl
               }
-            })
+            }, opts)
           } else {
             return []
           }
@@ -80,6 +81,7 @@ window.onload = function () {
       this._data.forEach((item: BulletItem, index) => {
         el.textContent = item.text;
         el.style.fontSize = `${20 * item.scale}px`;
+        el.style.padding = `${this._options.padding}||'0px'`
         size = el.getBoundingClientRect();
         item.width = size.width;
         item.height = size.height;
@@ -113,6 +115,10 @@ window.onload = function () {
    */
   class Channel {
     private _root: HTMLElement;
+    private _width: number;
+    private _height: number;
+    private _channels: any[];
+    private _channelHeight: number;
     constructor(root: HTMLElement) {
       console.log(`constructor -> 正在初始化跑道`);
       this._root = root;
@@ -120,7 +126,27 @@ window.onload = function () {
     }
 
     reset() {
-      console.log(`正在初始化跑道`);
+      setTimeout(() => {
+        let container = this._root;
+        let size = container.getBoundingClientRect()
+        this._width = size.width
+        this._height = size.height
+        let fontSize = /mobile/ig.test(navigator.userAgent) ? 10 : 20
+        let channelSize = Math.floor(this._height / fontSize)
+        let channels = []
+        for (let i = 0; i < channelSize; i++) {
+          channels[i] = {
+            id: i,
+            queue: [],
+            step: 99999,
+            surplus: 0
+          }
+        };
+        this._channels = channels;
+        this._channelHeight = fontSize;
+        console.log(`跑道个数 -> ${this._channels.length}`);
+        console.log(`跑道高度 -> ${this._channelHeight}`);
+      }, 200)
     }
   }
 
@@ -200,6 +226,6 @@ window.onload = function () {
     }
   ]
 
-  window.createBullet('#bullet-1', {data: damData});
+  window.createBullet('#bullet-1', {data: damData, padding: 5});
 
 }

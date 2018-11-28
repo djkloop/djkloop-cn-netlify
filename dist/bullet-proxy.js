@@ -23,7 +23,7 @@ window.onload = function () {
                                 start: item.offset_time * 1,
                                 avatarUrl: item.avatarUrl
                             };
-                        });
+                        }, opts);
                     }
                     else {
                         return [];
@@ -33,6 +33,7 @@ window.onload = function () {
             this.init();
         }
         MainBullet.prototype.init = function () {
+            var _this = this;
             console.log("init -> \u542F\u52A8\u5F39\u5E55\u6E32\u67D3\u8FDB\u7A0B");
             if (this._isActive) {
                 this.createBulletContainer(true);
@@ -52,6 +53,7 @@ window.onload = function () {
             this._data.forEach(function (item, index) {
                 el.textContent = item.text;
                 el.style.fontSize = 20 * item.scale + "px";
+                el.style.padding = _this._options.padding + "||'0px'";
                 size = el.getBoundingClientRect();
                 item.width = size.width;
                 item.height = size.height;
@@ -88,7 +90,29 @@ window.onload = function () {
             this.reset();
         }
         Channel.prototype.reset = function () {
-            console.log("\u6B63\u5728\u521D\u59CB\u5316\u8DD1\u9053");
+            var _this = this;
+            setTimeout(function () {
+                var container = _this._root;
+                var size = container.getBoundingClientRect();
+                _this._width = size.width;
+                _this._height = size.height;
+                var fontSize = /mobile/ig.test(navigator.userAgent) ? 10 : 20;
+                var channelSize = Math.floor(_this._height / fontSize);
+                var channels = [];
+                for (var i = 0; i < channelSize; i++) {
+                    channels[i] = {
+                        id: i,
+                        queue: [],
+                        step: 99999,
+                        surplus: 0
+                    };
+                }
+                ;
+                _this._channels = channels;
+                _this._channelHeight = fontSize;
+                console.log("\u8DD1\u9053\u4E2A\u6570 -> " + _this._channels.length);
+                console.log("\u8DD1\u9053\u9AD8\u5EA6 -> " + _this._channelHeight);
+            }, 200);
         };
         return Channel;
     }());
@@ -143,5 +167,5 @@ window.onload = function () {
             avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
         }
     ];
-    window.createBullet('#bullet-1', { data: damData });
+    window.createBullet('#bullet-1', { data: damData, padding: 5 });
 };
