@@ -71,6 +71,11 @@ body {
   padding: 2px;
 }
 
+.dm-bullet-container {
+  position: absolute;
+  bottom: 0;
+}
+
 @keyframes move {
 	0% {
 		left: 100%;

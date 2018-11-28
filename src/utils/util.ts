@@ -5,6 +5,7 @@ interface cInterFace {
 	toAng(rad: number): number;
 	rp(arr: number[], int: number): number;
 	createColor(): string;
+	createDom(el: string, tpl: string, attrs: any, cname: string): HTMLElement;
 }
 
 const C: cInterFace = {
@@ -41,7 +42,24 @@ const C: cInterFace = {
 		const num = Math.random() * (max - min) + min;
 		return int ? Math.round(num) : num;
 	},
-	createColor: function() {
+	createColor: function () {
 		return `rgb(${C.rp([55, 255], 1)}, ${C.rp([55, 255], 1)}, ${C.rp([55, 255], 1)})`
+	},
+	createDom: function (el = 'div', tpl = '', attrs = {}, cname = '') {
+		let dom = document.createElement(el)
+		dom.className = cname
+		dom.innerHTML = tpl
+		Object.keys(attrs).forEach(item => {
+			let key = item
+			let value = attrs[item]
+			if (el === 'video' || el === 'audio') {
+				if (value) {
+					dom.setAttribute(key, value)
+				}
+			} else {
+				dom.setAttribute(key, value)
+			}
+		})
+		return dom
 	}
 };

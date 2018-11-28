@@ -167,6 +167,6 @@ ul {
   100% {
     left: 0px;
     transform: translate(-100%, 0px);
-    -wekbit-transform: translate(-100%, 0px);
+    -webkit-transform: translate(-100%, 0px);
   }
 }

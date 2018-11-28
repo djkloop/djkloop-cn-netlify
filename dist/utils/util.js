@@ -33,5 +33,27 @@ var C = {
     },
     createColor: function () {
         return "rgb(" + C.rp([55, 255], 1) + ", " + C.rp([55, 255], 1) + ", " + C.rp([55, 255], 1) + ")";
+    },
+    createDom: function (el, tpl, attrs, cname) {
+        if (el === void 0) { el = 'div'; }
+        if (tpl === void 0) { tpl = ''; }
+        if (attrs === void 0) { attrs = {}; }
+        if (cname === void 0) { cname = ''; }
+        var dom = document.createElement(el);
+        dom.className = cname;
+        dom.innerHTML = tpl;
+        Object.keys(attrs).forEach(function (item) {
+            var key = item;
+            var value = attrs[item];
+            if (el === 'video' || el === 'audio') {
+                if (value) {
+                    dom.setAttribute(key, value);
+                }
+            }
+            else {
+                dom.setAttribute(key, value);
+            }
+        });
+        return dom;
     }
 };
