@@ -127,7 +127,7 @@ window.onload = function () {
                                 start: item.offset_time * 1,
                                 avatarUrl: item.avatarUrl
                             };
-                        }, opts);
+                        });
                     }
                     else {
                         return [];
@@ -166,6 +166,7 @@ window.onload = function () {
             });
             document.body.removeChild(document.querySelector('.xx-xxx-xxxx-xxx'));
             this.readData();
+            this.dataHandle();
             // console.log(this._data)
         };
         MainBullet.prototype.start = function () {
@@ -193,10 +194,17 @@ window.onload = function () {
                 result = channel.addBullet(bullet);
                 if (result.result) {
                     _this.queue.push(bullet);
-                    // bullet.reset();
-                    // bullet.attach();
+                    bullet.reset();
+                    bullet.attach();
                 }
             });
+        };
+        MainBullet.prototype.dataHandle = function () {
+            if (this.queue.length) {
+                this.queue.forEach(function (item) {
+                    item.startMove();
+                });
+            }
         };
         return MainBullet;
     }());
@@ -213,44 +221,188 @@ window.onload = function () {
             this.height = bulletOptions.height;
             this.start = bulletOptions.start;
             this.text = bulletOptions.text;
+            this.text_color = bulletOptions.color;
             this.container = container;
             var $el = document.createElement('div');
-            $el.style.cssText = "color: " + this.color + ";";
+            var $containerEl = document.createElement('div');
+            $el.style.cssText = "color: " + this.text_color + ";";
             $el.textContent = "" + this.text;
             this.containerBoundingPos = this.container.getBoundingClientRect();
             this.left = this.containerBoundingPos.left;
-            this._el = $el;
+            $containerEl.classList.add('bullet-item');
+            $containerEl.setAttribute('data-row', String(this._index));
+            $containerEl.appendChild($el);
+            this._el = $containerEl;
             this.end = -this.width;
             this.step = (this.containerBoundingPos.width + this.width) / this.duration / 60;
             // console.log(`constructor -> 正在初始化第${ this._index }条弹幕实例`);
         }
         ;
+        Bullet.prototype.reset = function () {
+            var _el = this._el;
+            _el.style.left = this.left + "px";
+            _el.style.top = this.top + "px";
+        };
+        Bullet.prototype.attach = function () {
+            this.container.appendChild(this._el);
+        };
+        Bullet.prototype.startMove = function () {
+            var _this = this;
+            var leftDuration = (this._el.getBoundingClientRect().right - this.containerBoundingPos.left) / ((this.containerBoundingPos.width + this.width) / this.duration);
+            this._el.style.transition = "-webkit-transform " + leftDuration + "s linear 0s";
+            setTimeout(function () {
+                _this._el.style.transform = "translateX(-" + (_this._el.getBoundingClientRect().right - _this.containerBoundingPos.left) + "px) translateY(0px) translateZ(0px)";
+            }, 20);
+        };
         return Bullet;
     }());
     window.createBullet = function (el, opts) {
         return new MainBullet(el, opts);
     };
+    var dyData = [];
+    for (var i = 0; i < 66; i++) {
+        dyData.push({
+            text: 'flutter, 好啊 - ' + i,
+            id: Math.random(),
+            type: 2,
+            text_color: C.createColor(),
+            duration: 10,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        });
+    }
     var damData = [
         {
-            text: '我是一条弹幕',
-            id: '3888',
+            text: 'flutter, 好啊',
+            id: '381',
             type: 2,
             text_color: 'black',
-            duration: 1000,
+            duration: 10,
             text_scale: 1,
             offset_time: 1000,
             avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
         },
         {
-            text: '我是一条弹幕------111111',
-            id: '888',
+            text: 'flutter, 好啊',
+            id: '381211',
             type: 2,
             text_color: 'black',
-            duration: 1000,
+            duration: 10,
             text_scale: 1,
             offset_time: 1000,
             avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
-        }
+        },
+        {
+            text: 'flutter, 真香',
+            id: '328',
+            type: 2,
+            text_color: 'black',
+            duration: 10,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
+        {
+            text: 'flutter, 666',
+            id: '348',
+            type: 2,
+            text_color: 'black',
+            duration: 10,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
+        {
+            text: 'flutter, 是谷歌出的',
+            id: '3888a',
+            type: 2,
+            text_color: 'black',
+            duration: 10,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
+        {
+            text: 'flutter, 是谷歌出的',
+            id: '38883333',
+            type: 2,
+            text_color: 'black',
+            duration: 10,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
+        {
+            text: '我是一条弹幕',
+            id: '388811111',
+            type: 2,
+            text_color: 'black',
+            duration: 10,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
+        {
+            text: '我是一条测试弹幕-1',
+            id: '3888',
+            type: 2,
+            text_color: 'black',
+            duration: 10,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
+        {
+            text: '我是一条红色弹幕',
+            id: '3888111111',
+            type: 2,
+            text_color: 'red',
+            duration: 10,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
+        {
+            text: 'ReactNative, 好啊',
+            id: '3888ff',
+            type: 2,
+            text_color: 'black',
+            duration: 10,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
+        {
+            text: 'ReactNative, 是facebook出的',
+            id: '8fdsfsd88',
+            type: 2,
+            text_color: 'black',
+            duration: 12,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
+        {
+            text: 'ReactNative, 666',
+            id: '883231328',
+            type: 2,
+            text_color: 'black',
+            duration: 12,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
+        {
+            text: 'ReactNative, 真香',
+            id: '88811',
+            type: 2,
+            text_color: 'black',
+            duration: 12,
+            text_scale: 1,
+            offset_time: 1000,
+            avatarUrl: 'http://active.qiutianaimeili.com/one_year_head_3.jpg'
+        },
     ];
-    window.createBullet('#bullet-1', { data: damData, padding: 5 });
+    window.createBullet('#bullet-1', { data: damData.concat(dyData), padding: 5 });
 };
